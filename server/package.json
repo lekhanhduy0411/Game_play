@@ -1,0 +1,21 @@
+{
+  "name": "cyber-code-breaker-server",
+  "version": "1.0.0",
+  "description": "Backend API cho web game trinh thám giải mã CYBER CODE-BREAKER: Chiến Dịch Bóng Ma EREBUS",
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1"
+  }
+}

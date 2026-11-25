@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+  --font-display: "Chakra Petch", "Be Vietnam Pro", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-noir-bg: #060A11;
+  --color-noir-amber: #F59E0B;
+  --color-noir-cyan: #06B6D4;
+  --color-noir-emerald: #10B981;
+  --color-noir-crimson: #F43F5E;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    background-color: #060A11;
+    color: #f1f5f9;
+    height: 100dvh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Chamfered tactical button silhouette */
+.tactical-cut {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+}
+
+/* ==========================================================================
+   CLASSIFIED DOSSIER PANEL — Wet Smoked Glass + HUD Corner Brackets + Watermark
+   ========================================================================== */
+.dossier-panel {
+  position: relative;
+  background-color: rgba(11, 17, 32, 0.70);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  clip-path: polygon(
+    0 8px,
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.dossier-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 158, 11, 0.018) 0px,
+    rgba(245, 158, 11, 0.018) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  z-index: 0;
+}
+
+/* Subtle 4 corner HUD brackets */
+.dossier-brackets {
+  position: relative;
+}
+
+.dossier-brackets::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(245, 158, 11, 0.65) 12px, transparent 12px) 0 0,
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.65) 12px, transparent 12px) 0 0,
+    linear-gradient(to left, rgba(245, 158, 11, 0.65) 12px, transparent 12px) 100% 0,
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.65) 12px, transparent 12px) 100% 0,
+    linear-gradient(to right, rgba(6, 182, 212, 0.5) 12px, transparent 12px) 0 100%,
+    linear-gradient(to top, rgba(6, 182, 212, 0.5) 12px, transparent 12px) 0 100%,
+    linear-gradient(to left, rgba(6, 182, 212, 0.5) 12px, transparent 12px) 100% 100%,
+    linear-gradient(to top, rgba(6, 182, 212, 0.5) 12px, transparent 12px) 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 14px 1.5px, 1.5px 14px, 14px 1.5px, 1.5px 14px, 14px 1.5px, 1.5px 14px, 14px 1.5px, 1.5px 14px;
+  z-index: 2;
+}
+
+.dossier-brackets-crimson::after {
+  background:
+    linear-gradient(to right, rgba(244, 63, 94, 0.85) 14px, transparent 14px) 0 0,
+    linear-gradient(to bottom, rgba(244, 63, 94, 0.85) 14px, transparent 14px) 0 0,
+    linear-gradient(to left, rgba(244, 63, 94, 0.85) 14px, transparent 14px) 100% 0,
+    linear-gradient(to bottom, rgba(244, 63, 94, 0.85) 14px, transparent 14px) 100% 0,
+    linear-gradient(to right, rgba(245, 158, 11, 0.7) 14px, transparent 14px) 0 100%,
+    linear-gradient(to top, rgba(245, 158, 11, 0.7) 14px, transparent 14px) 0 100%,
+    linear-gradient(to left, rgba(245, 158, 11, 0.7) 14px, transparent 14px) 100% 100%,
+    linear-gradient(to top, rgba(245, 158, 11, 0.7) 14px, transparent 14px) 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 16px 1.5px, 1.5px 16px, 16px 1.5px, 1.5px 16px, 16px 1.5px, 1.5px 16px, 16px 1.5px, 1.5px 16px;
+}
+
+/* Faint slanted TOP SECRET / CLASSIFIED rubber stamp watermark */
+.classified-stamp {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  padding: 2px 10px;
+  border-radius: 3px;
+  transform: rotate(-14deg);
+  opacity: 0.075;
+  z-index: 0;
+}
+
+/* Evidence Slip Card on Clue Pinboard */
+.evidence-slip {
+  position: relative;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.11), rgba(15, 23, 42, 0.85));
+  border: 1px solid rgba(245, 158, 11, 0.36);
+  border-left: 3px solid #F59E0B;
+}
+
+/* Subtle CRT / Rain Glass Film Grain Overlay */
+.noir-glass-overlay {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.04), transparent 55%),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0px,
+      rgba(255, 255, 255, 0) 3px,
+      rgba(6, 182, 212, 0.015) 4px,
+      rgba(0, 0, 0, 0.10) 5px
+    );
+}
+
+/* Custom Neo-Noir Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(6, 10, 17, 0.75);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.3);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.6);
+}
+
+/* Animations */
+@keyframes shake-error {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse-slow {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes laser-scan {
+  0%, 100% { transform: translateY(0px); opacity: 0.2; }
+  50% { transform: translateY(108px); opacity: 0.75; }
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.45); }
+  50% { box-shadow: 0 0 18px 2px rgba(244, 63, 94, 0.35); }
+}
+
+@keyframes star-pop {
+  0% { transform: scale(0.35) rotate(-18deg); opacity: 0; }
+  65% { transform: scale(1.22) rotate(6deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes circuit-flow {
+  from { stroke-dashoffset: 24; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-shake {
+  animation: shake-error 0.38s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin-reverse-slow 13s linear infinite;
+}
+
+.animate-radar {
+  animation: radar-sweep 5.5s linear infinite;
+}
+
+.animate-laser-scan {
+  animation: laser-scan 3.6s ease-in-out infinite;
+}
+
+.animate-boss-pulse {
+  animation: pulse-border 1.6s ease-in-out infinite;
+}
+
+.animate-star-pop {
+  animation: star-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-circuit {
+  animation: circuit-flow 2.4s linear infinite;
+}
